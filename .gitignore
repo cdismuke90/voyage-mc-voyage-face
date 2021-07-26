@@ -1,6 +1,6 @@
 ports.csv
 tracking.csv
-with-distance.xlsx
+with-distance.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

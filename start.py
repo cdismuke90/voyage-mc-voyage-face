@@ -32,4 +32,4 @@ def return_distance(latitude, longitude, points):
 
 tracking['distance'] = tracking.apply(lambda x: return_distance(x['lat'], x['long'], points2), axis=1)
 
-tracking.to_excel('with-distance.xlsx')
+tracking.to_csv('with-distance.csv')
