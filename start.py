@@ -28,8 +28,12 @@ for index, row in tracking.iterrows():
 def return_distance(latitude, longitude, points):
     point = (latitude,longitude)
     closest = closest_point(point, points)
-    return geodesic(point, closest).mi
+    out = geodesic(point, closest).mi
+    return out, closest
 
-tracking['distance'] = tracking.apply(lambda x: return_distance(x['lat'], x['long'], points2), axis=1)
+tracking[['distance','closest']] = tracking.apply(lambda x: return_distance(x['lat'], x['long'], points2), axis=1, result_type='expand')
+tracking[['p_lat','p_long']]=tracking['closest'].tolist()
+tracking = tracking.drop(columns=['closest'])
+print(tracking)
 
-tracking.to_csv('with-distance.csv')
+tracking.to_csv('with-distance.csv', index=False)
